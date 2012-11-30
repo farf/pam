@@ -1,0 +1,56 @@
+<p>Welcome to the initBounds action</p>
+<p>All is done with Sql here.
+    I have get bounds of countries from: <a href="http://wiki.openstreetmap.org/wiki/User:Ewmjc/Country_bounds">here</a>
+    Then I have linked these data with our database in excel.
+    I have with that created the sql file: 20120611-yvan-countriesbounds.sql
+    
+    
+    <?php 
+    setlocale(LC_NUMERIC, 'en_US'); 
+    $country = $this->country;
+    ?>
+    <br/>id: <?= $country->id ?>
+    <br/>computername: <?= $country->computerName ?>
+    <br/>latitude: <?= $country->latitude ?>
+    <br/>longitude: <?= $country->longitude ?>
+    <br/>zoom: <?= $country->zoom ?>
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBfMb8cI1Sgp1S402LpNui-o2U06Hu14cI&sensor=true">
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        function initialize() {
+            var myOptions = {
+            center: new google.maps.LatLng(<?= $country->latitude ?>, <?= $country->longitude?>),
+            zoom: <?= $country->zoom ?>+2,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById('map_canvas'),
+            myOptions);
+
+            var bounds = new google.maps.LatLngBounds(
+            new google.maps.LatLng(<?= $this->lat1  ?>, <?=  $this->lng1?>),
+            new google.maps.LatLng(<?= $this->lat2 ?>, <?= $this->lng2 ?>)
+            );
+
+            var rectangle = new google.maps.Rectangle({
+            bounds: bounds,
+            editable: true
+            });
+
+            google.maps.event.addListener(rectangle, 'bounds_changed', function() {
+                $("#inputtext").val(this.getBounds().getSouthWest().lng()+","+this.getBounds().getSouthWest().lat()+','+this.getBounds().getNorthEast().lng()+","+this.getBounds().getNorthEast().lat()
+                );
+            });
+
+            rectangle.setMap(map);
+        }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    <div id="map_canvas" style="width: 800px; height:600px"></div>
+    <form action ="#" method="POST">
+        <input id="inputtext" name="bounds" type="text" value="<?= $country->bounds ?>"/>
+        <input type="hidden" name='country_id' value ="<?= $this->country->id ?>"/>
+        <input type="submit" value="Validez"/>
+    </form>
