@@ -1,0 +1,1 @@
+SELECT '{"attrZoom":"continentZoom","attrOver":"continentover","attr":"continent","title":"France","link":"http://yvan.evaneos.dev/developper/map/france","path":"'|| getSvg2(st_union(geom), 0.0004863417365560, 1) || '"},' FROM fra_adm2  
