@@ -1,0 +1,23 @@
+Let's the magic begin.
+
+<?= count($this->countries) ?>
+<p>Here is the script:</p>
+<textarea cols="70" rows ="5">
+
+ <?php foreach ($this->countries as $country) { ?>
+   <?= $this->execs[$country->id]?>
+    <?php } ?>
+</textarea>
+<ul>
+
+    <?php foreach ($this->countries as $country) { 
+        if ($country->bounds != '') {
+        ?>
+
+    <li><?= $country->iso2 ?> : <img src='<?= $this->urls[$country->id]?>'/></li>
+
+    <?php }
+    
+    } ?>
+
+</ul>
