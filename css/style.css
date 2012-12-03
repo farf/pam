@@ -1,0 +1,171 @@
+* {
+    font-family: 'Droid sans', sans-serif;
+}
+
+.maphide {
+    display : none;
+}
+
+.map {    
+    overflow: hidden;
+    position: absolute;
+}
+
+.mapinner {
+    position: relative;
+}
+
+.mapbackground {
+    position: absolute;
+    top: 0;
+    left:0;
+}
+
+.mapContent {
+    background-color: rgba(90,187,238,1);
+    border: 1px solid #94938f;
+    width: 800px;
+    height: 800px;
+    position:relative;
+}
+
+.markerContainer {
+    margin: 20px 0px 23px 31px;
+    position: relative;
+}
+
+.marker {
+    position:absolute; 
+    width:52px; 
+    height:32px; 
+    margin-top:-20px; 
+    margin-left:-26px;
+    background-image: url('<?= BASE_URL ?>/imageCss/map/Icons_guide_48.png');
+    background-repeat: no-repeat;
+    cursor:move;
+    z-index: 10;
+}
+
+.marker.up {
+    margin-top: -31px;
+    background-position: -52px 0px;
+}
+
+.marker.nature {
+    background-position: 0px -32px;
+}
+.marker.nature.up {
+    background-position: -52px -32px;
+}
+.marker.insolite {
+    background-position: 0px -64px;
+}
+.marker.insolite.up {
+    background-position: -52px -64px;
+}
+.marker.culture {
+    background-position: 0px -96px;
+}
+.marker.culture.up {
+    background-position: -52px -96px;
+}
+.marker.detente {
+    background-position: 0px -128px;
+}
+.marker.detente.up {
+    background-position: -52px -128px;
+}
+.marker.aventure {
+    background-position: 0px -160px;
+}
+.marker.aventure.up {
+    background-position: -52px -160px;
+}
+.marker.rencontres {
+    background-position: 0px -192px;
+}
+.marker.rencontres.up {
+    background-position: -52px -192px;
+}
+.markertype {
+    float: left;
+    list-style-image: none;
+    list-style-type: none;
+    width: 60px;
+    padding: 10px;
+    text-align: center;
+    margin: 3px;
+    height: 40px;
+    font-size: 12px;
+    float: right;
+    color: #9E9899;
+}
+
+.markertype.selected, .markertype:hover {
+    border-radius: 5px;
+    cursor:pointer;
+    color: #534840;
+}
+
+.markertype:hover {
+    box-shadow: inset 0px 0px 8px #ddd;
+    background-color: #fdfdfd;
+}
+
+.markertype.selected {
+    box-shadow: inset 0px 0px 8px #CCC;
+    background-color: #fbfbfb;
+}
+
+.markermodellist {
+    height: 80px;
+    width: 760px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#small_map_container {
+    position:absolute;top:50px;left:50px;
+    padding: 5px;
+    box-shadow: 0px 0px 3px #9F9F9F;
+    background-color: white;
+    opacity: 0;
+    z-index: 30;
+}
+
+#small_map {
+    width:100px; height:100px;
+    border: 1px solid #94938f;
+}
+.tooltip {
+    background-color: black;
+    padding: 6px 12px;
+    position:absolute;
+    top: 0px;
+    left: 0px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    z-index:35;
+    opacity: 0.84;
+}
+
+.tooltip::after {
+    content:"";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    margin-left:-8px;
+    width: 0px;
+    height:0px;
+    border: solid black;
+    border-width: 10px 10px 0px 10px;
+    border-bottom-color: transparent;
+    border-top-color: black;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.pointer {
+    cursor: pointer;
+}

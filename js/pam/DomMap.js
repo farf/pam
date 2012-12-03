@@ -77,6 +77,22 @@ Pam.Map.DomMap = Class.extend({
         
         this._map.dom.children().each($.proxy(function(index, item) {this._addElement(item);}, this));
         
+        // get assets
+        if (this._data && typeof this._data.assets != 'unedfined' 
+            && typeof Pam.assets != 'undefined' && typeof Pam.assets[this._data.assets] != 'undefined') {
+            var newElements = new Array();
+            for (var i = 0 ; i < Pam.assets[this._data.assets].length ; i++) {
+                var element = Pam.assets[this._data.assets][i];
+                var newElement = this._findElement(Pam.assets[this._data.assets][i].id);
+                if (element) {
+                    $.extend(element, newElement);
+                } 
+                newElements.push(element);
+            }
+            this._data.elements = newElements;
+        }
+        console.log(this._data.elements);
+
         if (this._data && typeof this._data.elements != 'undefined') {
             
             for (var i = 0; i < this._data.elements.length ; i++) {
@@ -88,6 +104,7 @@ Pam.Map.DomMap = Class.extend({
                         jsonElement[j] = this._classes[jsonElement[j]];
                     }
                 }
+
                 if (typeof jsonElement.path != "undefined") {
                     var svg = new Pam.Map.Svg(jsonElement);
                     this.addMapElement(svg);
@@ -100,6 +117,16 @@ Pam.Map.DomMap = Class.extend({
                 }
             }
         }
+    },
+
+    _findElement : function(id) {
+        for (var j = 0 ; j < this._data.elements.length ; j++) {
+            var element = this._data.elements[j];
+            if (typeof element.id != 'udefined' && id == element.id) {
+                return element;
+            }
+        }
+        return false;
     },
     
     _initClasses : function() {

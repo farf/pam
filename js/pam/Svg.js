@@ -16,7 +16,8 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
     attr : null,
     attrOver : null,
     attrZoom : null,
-    glow : null,
+
+    over:false,
    
     clic:false,
     clicOffsetX: 0,
@@ -67,8 +68,10 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
         }, options);
         
         this.attrOver = options.attrOver;
+        if (typeof options.attrOver != 'undefined') {
+            this.over = true;
+        } 
         this.attr = options.attr;
-        if (typeof options.glow != 'undefined') this.glow = options.glow;
         this.attrZoom = options.attrZoom;
         this.path = options.path;
         this.clic = options.clic;
@@ -99,13 +102,18 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
         this._paper = map.getPaper();
         
         this.rPath = this._paper.path(this.path)
-            .attr(this.attr)
             .transform("t-"+(this._map.mapX-this._map.offsetX)+",-"+(this._map.mapY-this._map.offsetY))
-            .mouseover($.proxy(this, "_onMouseOver"))
-            .mouseout($.proxy(this, '_onMouseOut'))
             .click($.proxy(this, "_onClick"));
-            
-        if (this.glow) this.rPath.glow();
+        this.setAttr(this.attr);
+
+        if (this.over) {
+
+            this.rPath.mouseover($.proxy(this, "_onMouseOver"))
+            .mouseout($.proxy(this, '_onMouseOut'))
+        } else {
+            console.log('no');
+        }
+          
             
         if (this.clic) {
             this.getBBox();
@@ -116,7 +124,14 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
         
     }, 
     
-    setAttr : function(attr, highlight) {
+    setAttr : function(attr) {
+        this.rPath.attr(attr);  
+        if (typeof attr.glow != 'undefined') {
+            this.rPath.glow(attr.glow);
+        }
+    },
+
+    setAttrDependingOnHightlight : function(attr, highlight) {
         if (typeof highlight == "undefined") {
             highlight = false;
         }
@@ -127,7 +142,7 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
     
     zoom : function() {
         
-        this.setAttr(this.attrZoom);
+        this.setAttrDependingOnHightlight(this.attrZoom);
         
         if (this.clicWidth == 0) {
             var bounds = this.getBBox();
@@ -147,11 +162,11 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
     },
     
     _onZoomStart : function() {
-        this.setAttr(this.attrZoom);
+        this.setAttrDependingOnHightlight(this.attrZoom);
     },
     
     _onZoomStop : function() {
-        //this.setAttr(this.attr);
+        //this.setAttrDependingOnHightlight(this.attr);
     },
     
     chargeLink : function() {
@@ -182,8 +197,8 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
     
     _onMouseOver : function(event) {
         //this.rPath.animate(this.attrOver, 100);
-        if (this.attrOver !== null) {
-            this.rPath.attr(this.attrOver);
+        if (this.over) {
+            this.setAttr(this.attrOver);
             this.rPath.toFront();
             this._super(event);
         }
@@ -203,7 +218,7 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
     _onMouseOut : function(event) {
         if (!this._highlight) {
             //this.rPath.animate(this.attr, 100);
-            this.rPath.attr(this.attr);
+            this.setAttr(this.attr);
             this.rPath.toBack();
         }
         this._super(event);
