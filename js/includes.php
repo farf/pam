@@ -24,4 +24,7 @@ $includes = array(
     __DIR__ . '/pam/Legend.js',
     __DIR__ . '/pam/SmallMap.js',
     __DIR__ . '/pam/Tooltip.js',
+
+    // assets
+    __DIR__ . '/pam/assets/france_2.js'   
 );
