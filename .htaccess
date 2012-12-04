@@ -5,7 +5,7 @@ RewriteRule ^\.htaccess$ - [F]
 RewriteCond %{REQUEST_URI} =""
 RewriteRule ^.*$ /public/index.php [NC,L]
 
-RewriteCond %{REQUEST_URI} !^/webroot/.*$
+RewriteCond %{REQUEST_URI} !^/public/.*$
 RewriteRule ^(.*)$ /webroot/$1
 
 RewriteCond %{REQUEST_FILENAME} -f
