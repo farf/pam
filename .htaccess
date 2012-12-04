@@ -1,6 +1,4 @@
 
 RewriteEngine On
-
-
-RewriteCond %{HTTP_HOST} ^(www\.)?carte-interactive\.herokuapp\.com$ [nc]
-Rewriterule ^(.*)$ /public/$1 [L]
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule (.*) /public/$1
