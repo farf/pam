@@ -5,6 +5,6 @@ RewriteRule (.*) /public/$1
 
 
 RewriteBase /
-RewriteCond public/%{REQUEST_FILENAME} !-f 
+RewriteCond public%{REQUEST_FILENAME	} !-f 
 RewriteCond %{REQUEST_URI} \.(css|js)$ 
 RewriteRule (.*) /public/compressFiles.php [L]
