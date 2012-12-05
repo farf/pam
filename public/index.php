@@ -1,5 +1,3 @@
-<?php const BASE_URL = "http://pam.dev/"; ?>
-
 <?php
 // Get the bounds
 $bounds = "-4.965754875000016,41.24754311601056,9.810937499999909,51.286014301776405";
@@ -13,10 +11,10 @@ $map = new Pam_Map(800, 800, $bounds);
     <script type="text/javascript">
           BASE_URL = "<?= BASE_URL ?>";
     </script>
-    <script src='<?= BASE_URL ?>assets/france_2.js' type='text/javascript'></script>
-    <script src='<?= BASE_URL ?>pam_debug.js' type='text/javascript'></script>
-    <link href="<?= BASE_URL ?>pam_debug.css" rel="stylesheet" type="text/css">
-    <link href="<?= BASE_URL ?>pam_debug.css" rel="stylesheet" type="text/css">
+    <script src='/assets/france_2.js' type='text/javascript'></script>
+    <script src='/pam_debug.js' type='text/javascript'></script>
+    <link href="/pam_debug.css" rel="stylesheet" type="text/css">
+    <link href="/pam_debug.css" rel="stylesheet" type="text/css">
     <script type="text/javascript"      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBfMb8cI1Sgp1S402LpNui-o2U06Hu14cI&sensor=false">
     </script>
     
