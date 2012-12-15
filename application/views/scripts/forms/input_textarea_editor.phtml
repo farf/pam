@@ -1,0 +1,19 @@
+<tr>
+    <td colspan="3">
+        <textarea  name="<?php echo $this->element->getName();?>" id="<?php echo $this->element->getName(); ?>" >
+        <?php echo $this->element->getValue(); ?>
+        </textarea>
+        <?php if ($this->element->getMessages()) : ?>
+        <?php
+        $message = $this->element->getMessages();
+        $message = reset($message);
+        ?>
+        <div class="idl_error_wrapper">
+            <div class="idl_error_icon"></div>
+            <div class="idl_error_message">
+                <?php echo $message; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+    </td>
+</tr>

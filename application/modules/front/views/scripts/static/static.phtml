@@ -1,0 +1,21 @@
+<div class="row-fluid">
+  <div class="span3">
+    <div class="well sidebar-nav">
+      <ul class="nav nav-list">
+        <li class="nav-header">Installation</li>
+        <li class="<?php echo $this->filename == 'docs' ? 'active' : ''; ?>"><a href="<?php echo $this->url(array(), 'frontDocs')?>">Installation pas à pas</a></li>
+        <li><a href="<?php echo $this->url(array(), 'frontDocs')?>#alltogether">Installation rapide</a></li>
+        <li class="nav-header">Configuration</li>
+        <li class="<?php echo $this->filename == 'settings' ? 'active' : ''; ?>"><a href="<?php echo $this->url(array('filename'=>'settings'), 'frontStatic');?>">Option de configuration</a></li>
+        <li class="<?php echo $this->filename == 'plot' ? 'active' : ''; ?>"><a href="<?php echo $this->url(array('filename'=>'plot'), 'frontStatic');?>">Ajouter des points (villes...)</a></li>
+        <li class="<?php echo $this->filename == 'box' ? 'active' : ''; ?>"><a href="<?php echo $this->url(array('filename'=>'box'), 'frontStatic');?>">Afficher des box HTML</a></li>
+        <li class="nav-header">Ressources</li>
+        <li class="<?php echo $this->filename == 'nomenclature' ? 'active' : ''; ?>"><a href="<?php echo $this->url(array('filename'=>'nomenclature'), 'frontStatic');?>">Nomenclature des zones géographiques</a></li>
+        <li  class="<?php echo $this->filename == 'style-properties' ? 'active' : ''; ?>"><a href="<?php echo $this->url(array('filename'=>'style-properties'), 'frontStatic');?>">Elements de style</a></li>
+      </ul>
+    </div><!--/.well -->
+  </div><!--/span-->
+  <div class="span9">
+        <?php echo $this->partial('/static/'.$this->filename.'.phtml', array('config'=>$this->config)); ?>    
+  </div><!--/span-->
+</div><!--/row-->

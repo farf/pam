@@ -1,0 +1,15 @@
+<?php $this->doctype('XHTML11'); ?>
+<tr>
+    <th>
+        <?php
+        echo $this->formLabel(
+            $this->element->getName(),
+            $this->element->getLabel()
+        );
+        ?>
+    </th>
+    <td>
+        <?php echo $this->element->getValue(); ?>
+    </td>
+    <td class="field_error"></td>
+</tr>

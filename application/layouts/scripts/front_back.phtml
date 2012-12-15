@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="icon" type="image/png" href="/img/front/coccinelle-2.png" />
+	<?php echo $this->headTitle(); ?>
+	 <link rel="stylesheet" href="/css/front.css" type="text/css" />
+        <?php echo $this->headScript();?>
+	<?php echo $this->headLink(); ?>
+	<script src="/js/jquery-last.min.js"></script>
+	<script src="/js/front.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<?php echo $this->partial('/partial/header.phtml');?>
+		<?php echo $this->partial('/partial/menu.phtml', array('menu_tree'=>$this->menu_tree));?>
+		<div class="clearfix">
+			<span class="article_left_column">
+                		<?php echo $this->layout()->content; ?>
+			</span>
+			
+			<span class="article_right_column clearfix">
+				<div class="article_right_big_column">
+					<?php echo $this->partial('/partial/calendar_box.phtml', array('moon'=>$this->moon, 'moon_picture'=>$this->moon_picture)); ?>	
+					<?php echo $this->partial('/partial/plant_box.phtml'); ?>
+					<?php echo $this->partial('/partial/square_ad.phtml'); ?>
+				</div>
+			</span>
+		</div>
+	</div>
+</body>
+
+</html>

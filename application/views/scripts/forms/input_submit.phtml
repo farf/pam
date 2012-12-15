@@ -1,0 +1,8 @@
+<?php
+$this->doctype('XHTML11');
+echo $this->{$this->element->helper}(
+    $this->element->getName(),
+    $this->element->getLabel(),
+    $this->element->getAttribs()
+);
+?>

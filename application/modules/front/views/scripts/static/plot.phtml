@@ -1,0 +1,27 @@
+<?php $this->headTitle('Ajouter des points sur une carte | '.$this->config->brand_name); ?>
+<h1>Ajouter des points sur une carte</h1>
+<p>Vous avez la possibilités d'afficher des points sur une carte.</p>
+<p>Par défaut, les cartes de départements comportent les 50 plus grandes villes, Vous pouvez bien sur ajouter d'autres points correspondant à des villes ou des lieux remarquables</p>
+<p>Il vous suffit de les ajouter à l'initialisation de votre <?echo $this->config->brand_name; ?></p>
+
+ <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot;&gt;    
+    $(document).ready(function() {
+        $('.mapContent').mapnager({
+            asset: 'fr',
+            classes: [
+              {'myClass': {
+                      'fill': '#FFFFFF',
+                  },
+                }
+            ],
+            points: [
+            {'longitude':'1.1234', 'latitude':'1.1234', class:'myClass', hoverClass:'myClass', mapper-uid:'myPlot123'},
+            {'longitude':'1.1234', 'latitude':'1.1234', class:'myClass', hoverClass:'myClass'}
+            ]  
+        }); 
+    });
+&lt;/script&gt;
+</pre>
+
+<p>De même, vous pouvez faire apparaître une box au survol de la souris, en la générant et la mappant au mapper-uid que vous avez définit, le cas échéant.</p>

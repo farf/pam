@@ -1,0 +1,28 @@
+<?php
+$this->doctype('XHTML11');
+// TODO : remplacer le htmlspecialchars_decode par l'utilisation d'un label decorator avec option escape = false
+$label = htmlspecialchars_decode($this->formLabel(
+    $this->element->getName(),
+    $this->element->getLabel()
+));
+
+$attribs = array(
+    'class' => $this->element->getAttrib('class'),
+    'rel' => $this->element->getAttrib('rel'),
+);
+if ($this->element->disable == 'disable') {
+    $classArray['disable'] = $this->element->disable;
+}
+$input = $this->{$this->element->helper}(
+    $this->element->getName(),
+    $this->element->getValue(),
+    $attribs,
+    $this->element->getMultiOptions(),
+    ""
+);
+?>
+<?php if (isset($this->input_right) && $this->input_right) : ?>
+<?php echo $label; ?>&nbsp;<?php echo $input; ?>
+<?php else : ?>
+<?php echo $input; ?>&nbsp;<?php echo $label; ?>
+<?php endif; ?>

@@ -1,0 +1,18 @@
+<?php $this->headTitle('Configuration | '.$this->config->brand_name); ?>
+<h1>Afficher des box HTML au survol d'une zone de la carte</h1>
+<p>Dans un premier temps, il vous faut générer des div, qui apparaitront, au survol de votre zone</p>
+<p>Ce que vous voulez, c'est afficher des données qui sont relatives à la zone survolé, il faut donc faire correspondre votre nomenclature de zones à <a href="<?php echo $this->url(array('filename'=>'nomenclature'),'frontStatic');?>"> notre nomenclature.</a> pour générer ces boxs.
+<p>Vous indiquerez ensuite dans l'attribut data-mapper-uid de la div créé, l'identifiant de notre nomenclature comme sur l'exemple : </p>
+ <pre class="prettyprint linenums">
+&lt;div data-mapper-uid="58" class="mapnager_box" &quot;&gt;    
+HTML en rapport avec la box survolé : liens pour relier vos pages de localités....
+&lt;div&gt;
+</pre>
+
+<p>Placer ensuite dans votre feuille de style un display:none sur ces box<+p>
+ <pre class="prettyprint linenums">
+.mapnager_box{
+    display: none;
+}
+</pre>
+<p>Cela permettra de les afficher uniquement au passage de la souris</p>

@@ -1,0 +1,66 @@
+<?php $this->headTitle($this->config->brand_name.' Documentation'); ?>
+<h1><?php echo $this->config->brand_name;?> Documentation</h1>
+<h2>Installation</h2>
+<p><a href="#alltogether">Passez les explications pour la solution complète</a></p>
+<p>
+    <?php echo $this->config->brand_name;?> est un programme javascript vous permettant de construire vos cartes sur des pages Web. 
+    <?php echo $this->config->brand_name;?> utilise la librarie jQuery
+</p>
+<p>
+    Pour installer  <?php echo $this->config->brand_name;?>, placer le code suivant entre les balises <code>&lt;head&gt;&lt;/head&gt;</code> :
+</p>
+<p>
+<pre class="prettyprint linenums">
+    &lt;link href="/js/mapnager/mapnager.css" rel="stylesheet" type="text/css"&gt;
+    &lt;script src='/js/mapnager/mapnager.js' type='text/javascript'&gt;&lt;/script&gt;
+</pre>
+</p>
+<p>
+    Si votre fichier <?php echo $this->config->brand_name;?> est placé à un autre endroit de votre arborescence, n'oubliez pas de changer le path
+</p>
+<p>
+    Vous devez ensuite placer les données géographiques de la carte que vous voulez intégrer. C'est très simple, rajoutez la ligne suivante entre les balises <code>&lt;head&gt;&lt;/head&gt;</code>:
+<pre class="prettyprint linenums">
+    &lt;script src='/js/mapnager/assets/fr.js' type='text/javascript'&gt;&lt;/script&gt;
+</pre>
+</p>
+<p>
+    Vous pouvez ensuite appeler <?php echo $this->config->brand_name;?> après le chargement de la page en plaçant le code entre les balises <code>&lt;head&gt;&lt;/head&gt;</code> à la suite des scripts déjà insérées.
+</p>
+<p>
+<pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot;&gt;    
+    $(document).ready(function() {
+        $('.mapContent').mapnager({
+            asset: 'fr' // 'fr' est la référence à votre fichier de carte
+        }); 
+    });
+&lt;/script&gt;
+</pre>
+</p>
+<p>Nous fournissons une nomemclature des fichiers <a href="<?php echo $this->url(array('filename'=>'nomenclature'),'frontStatic');?>">sous format csv</a></p> permettant d'associer facilement pays, régions départements au fichiers
+<p>Pour finir, vous pouvez placer un <code>span</code> dans votre page </p>
+
+<pre class="prettyprint linenums">
+    &lt;div class="mapContent"&gt;&lt;/div&gt; 
+</pre>
+<h2 id="alltogether">Intégration complète</h2>
+<pre class="prettyprint linenums">
+&lt;html&gt;    
+&lt;head&gt; 
+    &lt;script src='/js/jquery-1.8.3.min.js' type='text/javascript'&gt;&lt;/script&gt;
+    &lt;link href="/js/mapnager/mapnager.css" rel="stylesheet" type="text/css"&gt;
+    &lt;script src='/js/mapnager/mapnager.js' type='text/javascript'&gt;&lt;/script&gt;
+    &lt;script src='/js/mapnager/assets/fr.js' type='text/javascript'&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;    
+    $(document).ready(function() {
+        $('.mapContent').mapnager('fr');
+    });
+    &lt;/script&gt;
+&lt;/head&gt;    
+&lt;body&gt;    
+    &lt;div class="mapContent"&gt;&lt;/div&gt; 
+&lt;/body&gt;    
+&lt;/html&gt;    
+</pre>
+

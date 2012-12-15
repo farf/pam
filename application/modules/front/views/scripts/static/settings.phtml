@@ -1,0 +1,196 @@
+<?php $this->headTitle('Configuration | '.$this->config->brand_name); ?>
+<h1>Configuration</h1>
+<div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+      Taille de l'élément
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
+     Par défaut la taille de la carte est de 500px*500px
+ <pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot;&gt;    
+    $(document).ready(function() {
+        $('.mapContent').mapnager({
+            asset: 'fr', // 'fr' est la référence à votre fichier de carte
+            width: '500', // Largeur de la carte
+            height: '500' // Hauteur de la carte
+        }); 
+    });
+&lt;/script&gt;
+</pre> 
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+            Définir une classe de style
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <p>Vous pouvez reconfigurer tous les styles des  éléments de la carte (équivalent d'attributs CSS).</p>
+        <p>Dans un premier temps, il vous faut créer des classes. Nous verrons par la suite comment associer ces classes aux zones de la carte et à un évenement</p>
+        <p>Par ce qu'un exemple vaut toujours mieux qu'un long discours : </p>
+<pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot;&gt;    
+    $(document).ready(function() {
+        $('.mapContent').mapnager({
+            asset: 'fr', // 'fr' est la référence à votre fichier de carte
+            classes: [
+                'myFabulousClass': {
+                    'stroke': '#EC5124',
+                    'stroke-width': '1.5',
+                    'stroke-opacity': '0.6',
+                    'stroke-linejoin': 'round', 
+                    'stroke-linecap': 'round',
+                    'fill': '#FFFFFF',
+                    'opacity': '1'
+                },
+                myFantasticClass: {
+                    'stroke': '#94908c',
+                    'stroke-width':' 1.5',
+                    'stroke-linejoin': 'round', 
+                    'stroke-linecap': 'round',
+                    'fill': '#efebe5',
+                    'opacity': '1'
+                }, 
+                'myMarvellousClass': {
+                    'stroke': '#94908c',
+                    'stroke-width': '1.5',
+                    'stroke-linejoin': 'round', 
+                    'stroke-linecap': 'round',
+                    'fill': '#efebe5',
+                    'opacity': '1'
+                }
+            ]
+        }); 
+    });
+&lt;/script&gt;
+</pre>
+
+        <p>La liste des propriétés configurables <a href="<?php echo $this->url(array('filename'=>'style-properties'), 'frontStatic');?>">est disponible ici </a></p>
+
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+      Définir une classe par défaut pour tous les élements de la carte
+      </a>
+    </div>
+    <div id="collapseThree" class="accordion-body collapse">
+      <div class="accordion-inner">
+<p>Si tous les éléments de votre carte ont un comportement identiques, vous pouvez définir le style par défaut :</p> 
+
+<pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot;&gt;    
+    $(document).ready(function() {
+        $('.mapContent').mapnager({
+            asset: 'fr', // 'fr' est la référence à votre fichier de carte
+            classes: [
+                'myFabulousClass': {
+                    'stroke': '#EC5124',
+                    'stroke-width': '1.5',
+                    'stroke-opacity': '0.6',
+                    'stroke-linejoin': 'round', 
+                    'stroke-linecap': 'round',
+                    'fill': '#FFFFFF',
+                    'opacity': '1'
+                },
+                'myFantasticClass': {
+                    'stroke': '#94908c',
+                    'stroke-width':' 1.5',
+                    'stroke-linejoin': 'round', 
+                    'stroke-linecap': 'round',
+                    'fill': '#efebe5',
+                    'opacity': '1'
+                }, 
+                'myMarvellousClass': {
+                    'stroke': '#94908c',
+                    'stroke-width': '1.5',
+                    'stroke-linejoin': 'round', 
+                    'stroke-linecap': 'round',
+                    'fill': '#efebe5',
+                    'opacity': '1'
+                }
+            ],
+            defaultClass: 'myFabulousClass',
+            defaultHoverClass: 'myFantasticClass',
+        }); 
+    });
+&lt;/script&gt;
+</pre>
+    <p><code>defaultClass</code> fixe la classe par défaut sans évenement</p>
+    <p><code>defaultHoverClass</code> fixe la classe par défaut au survol de la souris</p>
+    <p>Mais vous pouvez également redéfinir le style pour chacun des élements de la carte au moyen de on identifiant unique : l'attribut DOM data-mapper-uid. A chaque zone correspond en effet un identifiant unique <a href="<?php echo $this->url(array('filename'=>'nomenclature'),'frontStatic');?>"> présent dans notre nomenclature.</a>
+   <p> Plus d'infos dans le prochain paragraphe :)</p> 
+      </div>
+    </div>
+  </div>
+   <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseFor">
+      Associer une classe à un élement de la carte
+     </a>
+    </div>
+    <div id="collapseFor" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <p>Pour associer une classe de style à des zones, on associe leur attribut data-mapper-uid à une classe</p>
+        <p>Cet attribut a été choisi au mieux pour faire correspondre votre nomenclature à <a href="<?php echo $this->url(array('filename'=>'nomenclature'),'frontStatic');?>"> notre nomenclature.</a>. Il s'agit du code de département, d'un code postal etc.
+</p>
+        <p>Rien de plus simple, renseigner les propriétés classList et hoverClassList avec le data-mapper_uid comme dans l'exemple : </p>
+<pre class="prettyprint linenums">
+&lt;script type=&quot;text/javascript&quot;&gt;    
+    $(document).ready(function() {
+        $('.mapContent').mapnager({
+            asset: 'fr', // 'fr' est la référence à votre fichier de carte
+            classes: [
+                'myFabulousClass': {
+                    'stroke': '#EC5124',
+                    'stroke-width': '1.5',
+                    'stroke-opacity': '0.6',
+                    'stroke-linejoin': 'round', 
+                    'stroke-linecap': 'round',
+                    'fill': '#FFFFFF',
+                    'opacity': '1'
+                },
+                'myFantasticClass': {
+                    'stroke': '#94908c',
+                    'stroke-width':' 1.5',
+                    'stroke-linejoin': 'round', 
+                    'stroke-linecap': 'round',
+                    'fill': '#efebe5',
+                    'opacity': '1'
+                }, 
+                'myMarvellousClass': {
+                    'stroke': '#94908c',
+                    'stroke-width': '1.5',
+                    'stroke-linejoin': 'round', 
+                    'stroke-linecap': 'round',
+                    'fill': '#efebe5',
+                    'opacity': '1'
+                }
+            ],
+            defaultClass: 'myFabulousClass',
+            defaultHoverClass: 'myFantasticClass',
+            classList: [
+                {'class':'myFantasticClass','data-mapper-uid': '55'}
+            ],
+            hoverClassList: [
+                {'class':'myFantasticClass', 'data-mapper-uid': '75'}
+                {'class':'myFantasticClass','data-mapper-uid': '78' }
+            ]
+        }); 
+    });
+&lt;/script&gt;
+</pre>
+
+      </div>
+    </div>
+  </div>
+</div>
