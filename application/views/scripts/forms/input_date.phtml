@@ -1,0 +1,39 @@
+<?php
+$this->doctype('XHTML11');
+?>
+<?php $group_label_input = isset($this->group_label_input) && $this->group_label_input; ?>
+<?php if (!$group_label_input || (!isset($this->start) || $this->start)) : ?>
+<tr>
+<?php endif; ?>
+    <td>
+        <?php
+        echo $this->formLabel(
+            $this->element->getName(),
+            $this->element->getLabel() . ($this->element->isRequired() ? ' *' : '')
+        );
+        
+        echo $this->{$this->element->helper}(
+            $this->element->getName(),
+            $this->element->getValue(),
+            $this->element->getAttribs()
+        );
+        ?>
+        
+        <?php if ($this->element->getMessages()) : ?>
+        <?php
+        $message = $this->element->getMessages();
+        $message = reset($message);
+        ?>
+    </td>
+    <td class="field_error">
+        <div class="field_error_wrapper">
+            <div class="field_error_icon"></div>
+            <div class="field_error_message">
+                <?php echo $message; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+    </td>
+<?php if (!$group_label_input || (!isset($this->end) || $this->end)) : ?>
+</tr>
+<?php endif; ?>

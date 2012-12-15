@@ -1,0 +1,24 @@
+<form action="<?php echo $this->element->getAction(); ?>" enctype="multipart/form-data" method="<?php echo $this->element->getMethod(); ?>">
+    <div>
+        <table class="<?php echo $this->element->getAttrib('class'); ?><?php if (!$this->element->isErrors()) : ?> noerror<?php endif; ?>">
+            <?php foreach ($this->element as $element) : ?>
+                <?php
+                if ($element->getType() !== 'Zend_Form_Element_Submit') {
+                    echo $element;
+                }
+                ?>
+            <?php endforeach; ?>
+        </table>
+        <div>
+            <span class="idl_required_field_star">*</span> : champ obligatoire
+        </div>
+    </div>
+    <div class="centered">
+        <?php foreach ($this->element as $element) {
+            if ($element->getType() === 'Zend_Form_Element_Submit') {
+                echo $element;
+            }
+        }
+        ?>
+    </div>
+</form>

@@ -1,0 +1,35 @@
+/** NAV **/
+.brand{
+    color: white;
+}
+.navbar-inverse .nav > li > span.link{
+    color: #999;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.navbar .nav > li > span.link{
+    float: none;
+    padding: 10px 15px 10px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.navbar .nav > li > span.link:hover{
+    color: white;
+}
+.nav > li > span.link{
+    display: block;
+}
+.brand img{
+    margin-right: 8px;
+    margin-top: -3px;
+    height: 20px;
+}
+
+/** HOME **/
+
+.home h1{
+    font-size: 40px;
+}
+.home div.hero-unit{
+    padding: 20px;
+}

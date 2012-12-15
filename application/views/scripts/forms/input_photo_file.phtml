@@ -1,0 +1,42 @@
+<?php $this->doctype('XHTML11'); ?>
+<tr>
+    <th>
+        <?php
+        echo $this->formLabel(
+            $this->element->getName(),
+            $this->element->getLabel()
+        );
+        ?>
+        <?php if ($this->element->isRequired()) : ?>
+            <span class="idl_required_field_star">*</span>
+        <?php endif; ?>
+    </th>
+    <td>
+        <input type="hidden" class="MAX_FILE_SIZE" value="1048576" name="MAX_FILE_SIZE"/>
+        <?php if(!empty($this->photo_file)) : ?>
+        <div class="photo_preview">
+            <img src="<?php echo $this->images_path.$this->photo_file; ?>" />
+        </div>
+        <?php endif; ?>
+        <?php echo $this->{$this->element->helper}(
+            $this->element->getName(),
+            $this->element->getValue(),
+            array('class' => 'file'),
+            $this->element->getMaxFileSize()
+        ); ?>
+    </td>
+    <td class="field_error">
+        <?php if ($this->element->getMessages()) : ?>
+        <?php
+        $message = $this->element->getMessages();
+        $message = reset($message);
+        ?>
+        <div class="field_error_wrapper">
+            <div class="field_error_icon"></div>
+            <div class="field_error_message">
+                <?php echo $message; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+    </td>
+</tr>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link type="text/css" rel="stylesheet" href="/css/simple.css" />
+		<title><?php echo $this->headTitle; ?></title>
+		<?php echo $this->headScript(); ?>
+		<?php echo $this->headLink(); ?>
+		<?php echo $this->headMeta(); ?>
+		<?php echo $this->headStyle(); ?>
+		<link href="/favicon.ico" rel="icon" type="image/x-icon" />
+		<?php if (Zend_Registry::isRegistered('Doctrine_Profiler')) : ?>
+			<link type="text/css" rel="stylesheet" href="/css/debug.css" />
+		<?php endif; ?>
+	</head>
+	<body>
+		<div id="wrapper">
+			<div id="headerWrapper">
+				<div id="header">
+					<div id="subscribe">
+						<h1><?php echo $this->title; ?></h1>
+					</div>
+					<img alt="jardinage.eu" src="/img/front/jardinage.eu.png" />
+				</div>
+			</div>
+			<div id="mainWrapper">
+				<?php if ($this->messages) : ?>
+					<ul id="messages">
+						<?php foreach ($this->messages as $message) : ?>
+							<li class="<?php echo $message->getType(); ?>">
+								<?php echo $message->getText(); ?>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+				<?php echo $this->layout()->content; ?>
+			</div>
+			<div class="clear push"></div>
+		</div>
+	</body>
+</html>

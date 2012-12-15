@@ -1,0 +1,54 @@
+<?php $this->doctype('XHTML11'); ?>
+<?php $group_label_input = isset($this->group_label_input) && $this->group_label_input; ?>
+<?php if (!$group_label_input || (!isset($this->start) || $this->start)) : ?>
+<tr>
+<?php endif; ?>
+    <?php if (!$group_label_input) : ?>
+    <th>
+    <?php else : ?>
+        <?php if ((!isset($this->start) || $this->start) && (!isset($this->end) || $this->end)) : ?>
+        <td class="element" colspan="3">
+        <?php else : ?>
+        <td class="element">
+        <?php endif; ?>
+    <?php endif; ?>
+        <?php
+        echo $this->formLabel(
+            $this->element->getName(),
+            $this->element->getLabel()
+        );
+        ?>
+        <?php if ($this->element->isRequired()) : ?>
+            <span class="idl_required_field_star">*</span>
+        <?php endif; ?>
+    <?php if (!$group_label_input) : ?>
+    </th>
+    <td>
+    <?php endif; ?>
+        <?php
+        $attributes = $this->element->getAttribs();
+        echo $this->{$this->element->helper}(
+            $this->element->getName(),
+            $this->element->getValue(),
+            $attributes
+        );
+        echo ' ' . $this->element->getAttrib('custom');
+        ?>
+    </td>
+    <td class="error">
+        <?php if ($this->element->getMessages()) : ?>
+        <?php
+        $message = $this->element->getMessages();
+        $message = reset($message);
+        ?>
+        <div class="field_error_wrapper">
+            <div class="field_error_icon"></div>
+            <div class="field_error_message">
+                <?php echo $message; ?>
+            </div>
+        </div>
+        <?php endif; ?>
+    </td>
+<?php if (!$group_label_input || (!isset($this->end) || $this->end)) : ?>
+</tr>
+<?php endif; ?>
