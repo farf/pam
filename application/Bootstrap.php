@@ -48,7 +48,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $autoloader->addResourceType('api','api/','Api');
         return $autoloader;
     }
-    
+/*    
     protected function _initDoctrine() {
         require_once 'Doctrine/Core.php';
         
@@ -65,14 +65,14 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap {
         $conn->setAttribute(Doctrine_Core::ATTR_USE_NATIVE_ENUM, true);
         $conn->setCharset('utf8');
         
-        /*if (in_array(APPLICATION_ENV, array('dev', 'preprod'))) {
+        if (in_array(APPLICATION_ENV, array('dev', 'preprod'))) {
             $profiler = new Doctrine_Connection_Profiler();
             $conn->setListener($profiler);
             Zend_Registry::set('Doctrine_Profiler', $profiler);
-        }*/
+        }
         Doctrine_Core::loadModels(APPLICATION_PATH . '/models/');
     }
-    
+  */  
     protected static function _initConfig () {
         $config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini', APPLICATION_ENV);
         Zend_Registry::set('config', $config);
