@@ -6,7 +6,7 @@
     display : none;
 }
 
-.map {    
+.map {
     overflow: hidden;
     position: absolute;
 }
@@ -22,6 +22,7 @@
 }
 
 .mapContent {
+    background-color: rgb(90,187,238);
     background-color: rgba(90,187,238,1);
     border: 1px solid #94938f;
     width: 800px;
@@ -30,15 +31,15 @@
 }
 
 .markerContainer {
-    margin: 20px 0px 23px 31px;
+    margin: 20px 0 23px 31px;
     position: relative;
 }
 
 .marker {
-    position:absolute; 
-    width:52px; 
-    height:32px; 
-    margin-top:-20px; 
+    position:absolute;
+    width:52px;
+    height:32px;
+    margin-top:-20px;
     margin-left:-26px;
     background-image: url('<?= BASE_URL ?>/imageCss/map/Icons_guide_48.png');
     background-repeat: no-repeat;
@@ -48,41 +49,41 @@
 
 .marker.up {
     margin-top: -31px;
-    background-position: -52px 0px;
+    background-position: -52px 0;
 }
 
 .marker.nature {
-    background-position: 0px -32px;
+    background-position: 0 -32px;
 }
 .marker.nature.up {
     background-position: -52px -32px;
 }
 .marker.insolite {
-    background-position: 0px -64px;
+    background-position: 0 -64px;
 }
 .marker.insolite.up {
     background-position: -52px -64px;
 }
 .marker.culture {
-    background-position: 0px -96px;
+    background-position: 0 -96px;
 }
 .marker.culture.up {
     background-position: -52px -96px;
 }
 .marker.detente {
-    background-position: 0px -128px;
+    background-position: 0 -128px;
 }
 .marker.detente.up {
     background-position: -52px -128px;
 }
 .marker.aventure {
-    background-position: 0px -160px;
+    background-position: 0 -160px;
 }
 .marker.aventure.up {
     background-position: -52px -160px;
 }
 .marker.rencontres {
-    background-position: 0px -192px;
+    background-position: 0 -192px;
 }
 .marker.rencontres.up {
     background-position: -52px -192px;
@@ -108,26 +109,26 @@
 }
 
 .markertype:hover {
-    box-shadow: inset 0px 0px 8px #ddd;
+    box-shadow: inset 0 0 8px #ddd;
     background-color: #fdfdfd;
 }
 
 .markertype.selected {
-    box-shadow: inset 0px 0px 8px #CCC;
+    box-shadow: inset 0 0 8px #CCC;
     background-color: #fbfbfb;
 }
 
 .markermodellist {
     height: 80px;
     width: 760px;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 #small_map_container {
     position:absolute;top:50px;left:50px;
     padding: 5px;
-    box-shadow: 0px 0px 3px #9F9F9F;
+    box-shadow: 0 0 3px #9F9F9F;
     background-color: white;
     opacity: 0;
     z-index: 30;
@@ -141,8 +142,8 @@
     background-color: black;
     padding: 6px 12px;
     position:absolute;
-    top: 0px;
-    left: 0px;
+    top: 0;
+    left: 0;
     border-radius: 5px;
     color: white;
     font-weight: bold;
@@ -156,10 +157,10 @@
     bottom: -10px;
     left: 50%;
     margin-left:-8px;
-    width: 0px;
+    width: 0;
     height:0px;
     border: solid black;
-    border-width: 10px 10px 0px 10px;
+    border-width: 10px 10px 0 10px;
     border-bottom-color: transparent;
     border-top-color: black;
     border-left-color: transparent;

@@ -1,6 +1,6 @@
 <?php
 /**
- * This file aggregates files for js or css.  
+ * This file aggregates files for js or css.
  */
 
 $expires = 60*60*24*300;
@@ -31,7 +31,7 @@ if (count($_exploded) < 2) {
 if (count($_exploded) == 2) {
     $version = $_exploded[1];
     $includeName = "includes.php";
-} 
+}
 
 
 $_pieces = explode(".", $version);

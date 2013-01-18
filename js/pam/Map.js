@@ -1,7 +1,7 @@
 
 
-if(typeof(Pam) == 'undefined') {Pam = {}};
-if(typeof(Pam.Map) == 'undefined') {Pam.Map = {}};
+if(typeof(Pam) == 'undefined') {Pam = {};}
+if(typeof(Pam.Map) == 'undefined') {Pam.Map = {};}
 
 
 Pam.Map.Map = Class.extend({
@@ -22,7 +22,7 @@ Pam.Map.Map = Class.extend({
     MOUSE_MOVE: "event_map_mouse_move",
     ZOOM_START: "event_map_zooming",
     ZOOM_STOP: "event_map_zoom_stop",
-    
+
     /**
      * CONSTANTS FOR CONVERSION
      */
@@ -30,76 +30,76 @@ Pam.Map.Map = Class.extend({
     getRadius : function() {
         return this.OFFSET / Math.PI;
     },
-    
+
     // The dom containing the map
     dom : null,
-    
+
     // mouse position
     mouseX : 0,
     mouseY : 0,
-    
+
     /**
      * BOUNDS AND ELEMENTS OF THE MAP
      */
-    
+
     // Bounds
     bounds: "",
-    boundsArray : new Array(),
-    
+    boundsArray : [],
+
     // Top right point and latLng
     latLng0 : null,
     point0 : null,
-    
+
     // bottom left point
     latLng1 : null,
     point1 : null,
-    
+
     // ratio between zoom 21 of a webmap and the current map
     ratio : 1,
-    
+
     // size of the map
     width : 0,
     height : 0,
     viewbox : null,
-    
+
     /*
      *  To create the conversion system, we take the bounds of the map. We try to make it as big as possible.
-     *  
+     *
      *  offset x (offsety : 0)
      *  ______________
-     *  |   |    |    | 
-     *  |   |    |    | 
-     *  |   |    |    | 
+     *  |   |    |    |
+     *  |   |    |    |
+     *  |   |    |    |
      *  ---------------
-     *  
+     *
      *  OR
      *  ______________
-     *  |             |  
+     *  |             |
      *  |             | offset Y (offsetX:0)
      *  ---------------
-     *  |             | 
-     *  |             | 
+     *  |             |
+     *  |             |
      *  ---------------
-     *  |             | 
+     *  |             |
      *  ______________
- 
+
      */
-    
+
     offsetX : 0,
     offsetY : 0,
-    
+
     // position of the map with center top left of the world
     mapX : 0,
     mapY : 0,
-    
+
     // Array of elements
-    _elements : new Array(),
-    
+    _elements : [],
+
     /**
      * raphael for SVG
      */
     _paper : null,
-    
+
     // Constructor
     init : function(options) {
         options = $.extend({
@@ -113,17 +113,17 @@ Pam.Map.Map = Class.extend({
 
         this.width = options.width;
         this.height = options.height;
-        
+
         // Init Bounds
         this._initBounds();
-        
+
         // Init events
         this._initEvents();
-        
+
     },
-    
+
     _initEvents : function() {
-        
+
         // Init droppable event
         this.dom.droppable({
             over: $.proxy(this, "_onDragOver"),
@@ -131,35 +131,35 @@ Pam.Map.Map = Class.extend({
             drop: $.proxy(this, "_onDragStop"),
             tolerance: "pointer"
         });
-  
+
         this.dom.mouseenter($.proxy(this, "_onMouseEnter"));
         this.dom.mouseout($.proxy(this, "_onMouseEnter"));
         this._initMouseEvent();
-        
+
     },
-    
+
     _onMouseEnter : function(event) {
         $(this).trigger(this.MOUSE_ENTER, event);
     },
-    
+
     _onMouseOut : function(event) {
         $(this).trigger(this.MOUSE_OUT, event);
     },
-   
+
     _onDragStop : function(event, ui) {
         var element = ui.helper.data('element');
         if (element instanceof Pam.Map.Marker) {
             this._onMarkerDragStop(event, element);
         }
-        
+
         $(this).trigger(this.DRAG_DROP, [event, ui]);
     },
-    
+
     _onDragOut : function(event, ui) {
-        
+
         $(this).trigger(this.DRAG_OUT, [event, ui]);
     },
-    
+
     _onDragOver : function(event, ui) {
         $(this).trigger(this.DRAG_OVER, [event, ui]);
     },
@@ -168,7 +168,7 @@ Pam.Map.Map = Class.extend({
      * CONVERSION FUNCTIONS
      * global means with zoom21 of webmap
      */
-    
+
     _getGlobalXfromLatLng : function(latLng) {
         return this.OFFSET+this.getRadius()*latLng.lng*Math.PI/180;
     },
@@ -192,68 +192,66 @@ Pam.Map.Map = Class.extend({
         return _point;
     },
 
-    _getLatFromGlobalX : function(x) 
-    { 
-            return (((x)-this.OFFSET)/this.getRadius())*180/Math.PI; 
-    }, 
+    _getLatFromGlobalX : function(x)
+    {
+            return (((x)-this.OFFSET)/this.getRadius())*180/Math.PI;
+    },
 
-    _getLngFromGlobalY : function(y) 
-    { 
-            return (Math.PI/2-2*Math.atan(Math.exp(((y)-this.OFFSET)/this.getRadius())))*180/Math.PI; 
-    }, 
-    
+    _getLngFromGlobalY : function(y)
+    {
+            return (Math.PI/2-2*Math.atan(Math.exp(((y)-this.OFFSET)/this.getRadius())))*180/Math.PI;
+    },
+
     getLatLngFromPoint : function(point) {
-        var _globalX = (point.x - this.offsetX) / this.ratio + this.point0.x;                
+        var _globalX = (point.x - this.offsetX) / this.ratio + this.point0.x;
         var _globalY = (point.y - this.offsetY) / this.ratio + this.point0.y;
         return new Pam.Map.LatLng(this._getLatFromGlobalX(_globalX), this._getLngFromGlobalY(_globalY));
     },
-    
+
     getPointFromDom : function(dom) {
-        var x = parseInt(dom.offset().left) - parseInt(this.dom.offset().left) 
-                - parseInt(dom.css('margin-left')) - parseInt(this.dom.css('border-width'));
-        var y = parseInt(dom.offset().top) - parseInt(this.dom.offset().top)
-                - parseInt(dom.css('margin-top')) - parseInt(this.dom.css('border-width'));
-            
+        var x = parseInt(dom.offset().left, 10) - parseInt(this.dom.offset().left, 10) - parseInt(dom.css('margin-left'), 10) - parseInt(this.dom.css('border-width'), 10);
+        var y = parseInt(dom.offset().top, 10) - parseInt(this.dom.offset().top, 10) - parseInt(dom.css('margin-top'), 10) - parseInt(this.dom.css('border-width'), 10);
+
         return new Pam.Map.Point(x, y);
     },
-    
+
     /**
      * ADD ELEMENTS ON THE MAP
      */
     _onMarkerDragDrag : function(event, marker) {
         $(this).trigger(this.MARKER_DRAG_DRAG, marker);
     },
-    
+
     _onMarkerDragStart : function(event, marker) {
         $(this).trigger(this.MARKER_DRAG_START, marker);
     },
-    
+
     _onMarkerDragStop : function(event, marker) {
         if (marker instanceof Pam.Map.Marker && marker.getMap() !== this) {
             this.addElement(marker);
         }
         $(this).trigger(this.MARKER_DRAG_STOP, marker);
     },
-    
+
     addElement : function(element) {
         element.setMap(this);
         this._elements.push(element);
         if (element instanceof Pam.Map.Marker) {
-            
+
             $(element).on(element.DRAG_DRAG, $.proxy(this, "_onMarkerDragDrag"));
             $(element).on(element.DRAG_START, $.proxy(this, "_onMarkerDragStart"));
             $(element).on(element.DRAG_STOP, $.proxy(this, "_onMarkerDragStop"));
 
             $(this).trigger(this.MARKER_ADDED, element  );
-            
+
         }
-        
+
     },
-    
+
     getElements : function() {
         return this._elements;
     },
-    
+
     /**
      * INIT THE MAP
      */
@@ -279,12 +277,12 @@ Pam.Map.Map = Class.extend({
             this.offsetX = 0;
             this.offsetY = Math.round((this.height - this.ratio * Math.abs(this.point0.y - this.point1.y)) / 2);
         }
-        
+
         this._setMapPosition();
-        
+
         this.setViewBox();
     },
-    
+
     _setMapPosition : function() {
         this.mapX = this.point0.x*this.ratio;
         this.mapY = this.point0.y*this.ratio;
@@ -297,19 +295,19 @@ Pam.Map.Map = Class.extend({
         if (typeof this.dom.attr('id') == 'undefined') {
             this.dom.attr('id', Pam.Utils.generateId("map_"));
         }
-        
-        this._paper = Raphael(this.dom.attr("id"), this.width, this.height); 
+
+        this._paper = Raphael(this.dom.attr("id"), this.width, this.height);
     },
-    
+
     getPaper : function() {
-        
-        if (this._paper == null) {
+
+        if (this._paper === null) {
             this._initRaphael();
         }
-        
+
         return this._paper;
     },
-    
+
     setViewBox : function(viewbox, duration, callback) {
         if (! viewbox) {
             viewbox = {
@@ -321,53 +319,53 @@ Pam.Map.Map = Class.extend({
                 height: this.height
             };
         }
-        
-        if (parseInt(duration) > 0) {
-            
+
+        if (parseInt(duration, 10) > 0) {
+
             var tthis = this;
             this._onZoom();
             this.getPaper().animateViewBox(this.viewbox, viewbox.x, viewbox.y, viewbox.width, viewbox.height, duration, function() {
                 tthis._onZoomStop();
                 if (typeof callback != "undefined") callback();
-            })
-            
+            });
+
         } else {
-            
+
             this.getPaper().setViewBox(viewbox.x, viewbox.y, viewbox.width, viewbox.height);
             if (typeof callback != "undefined") callback();
         }
-        
+
         this.viewbox = viewbox;
-        
-        
+
+
     },
-    
+
     _onZoom : function() {
         $(this).trigger(this.ZOOM_START);
     },
-    
+
     _onZoomStop : function() {
         $(this).trigger(this.ZOOM_STOP);
     },
-    
+
     _initMouseEvent : function() {
         this._bindMouseEvent();
     },
-    
+
     _bindMouseEvent : function() {
-        
+
         this.dom.on('mousemove.mapmousemove', $.proxy(this, "_onMouseMove"));
     },
-    
+
     _unbindMouseEvent : function() {
         this.dom.off('.mapmousemove');
     },
-    
+
     _onMouseMove : function(event) {
         this._mouseX = event.offsetX;
         this._mouseY = event.offsetY;
         $(this).trigger(this.MOUSE_MOVE, [this._mouseX, this._mouseY] );
-        
+
     }
 });
 

@@ -1,0 +1,11 @@
+function OAS_RICH(position) {
+if (position == 'Top') {
+document.write ('<SCRIPT LANGUAGE="JavaScript1.1" SRC="http://www3.smartadserver.com/call/adj/250811/2076945/leboncoin_equipementbebe.scm/728x90/1171928494/no?http://deliv.leboncoin.fr/RealMedia/ads/click_lx.ads/maison/equipement_bebe/R12/listing/L26/1171928494/Top/Leboncoin/ELE0003005/ELE0003005_france-Maternite_728x90.html/584763352b3142505756454142617741?"></SCRIPT>\n');
+document.write ('<NOSCRIPT><a href="http://deliv.leboncoin.fr/RealMedia/ads/click_lx.ads/maison/equipement_bebe/R12/listing/L26/1171928494/Top/Leboncoin/ELE0003005/ELE0003005_france-Maternite_728x90.html/584763352b3142505756454142617741?http://www3.smartadserver.com/call/jumpi/250811/2076945/leboncoin_equipementbebe.scm/728x90/1171928494/no?" target="_blank">\n');
+document.write ('<img src="http://www3.smartadserver.com/call/adi/250811/2076945/leboncoin_equipementbebe.scm/728x90/1171928494/no?" border="0"></a></NOSCRIPT>\n');
+document.write ('<img src="http://deliv.leboncoin.fr/5/maison/equipement_bebe/R12/listing/L26/1171928494/Top/Leboncoin/ELE0003005/ELE0003005_france-Maternite_728x90.html/584763352b3142505756454142617741?_RM_EMPTY_&search=|phil_and_ted|&r=12&resX=1440&resY=900&XE&&if_nt_CookieAccept=&XE" style="display: none" >');
+}
+if (position == 'Top1') {
+document.write ('<!-- Leboncoin/Default_campaign -->');
+}
+}

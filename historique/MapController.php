@@ -15,6 +15,7 @@ class Developper_MapController extends BaseController {
         
         
     }
+
     
     public function initboundsAction() {
         // Get countries

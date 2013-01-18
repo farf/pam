@@ -7,18 +7,18 @@ if(typeof(Pam.Map) == 'undefined') {
 
 
 Pam.Map.Svg = Pam.Map.MapElement.extend({
-    
+
     CHARGED_AND_ZOOMED : "event_svg_charged_zoomed",
     ZOOMED : "event_svg_zoomed",
     CHARGED : "event_svg_charged",
     ZOOM : "event_path_zoom",
-    
+
     attr : null,
     attrOver : null,
     attrZoom : null,
 
     over:false,
-   
+
     clic:false,
     clicOffsetX: 0,
     clicOffsetY: 0,
@@ -28,28 +28,28 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
     linkData : null,
     hasZoomed : false,
     _bBox : null,
-    
+
     path: "",
-    
+
     rPath : null,
-    
+
     _paper: null,
-    
+
     init : function(options) {
-        
+
         options = $.extend({
             attr: {
                 stroke: "#94908c",
                 "stroke-width": 1.5,
-                "stroke-linejoin": "round", 
+                "stroke-linejoin": "round",
                 "stroke-linecap":"round",
                 "fill": "#efebe5",
-                opacity: 1  
+                opacity: 1
             },
             attrZoom: {
                 stroke: "#94908c",
                 "stroke-width": 1.5,
-                "stroke-linejoin": "round", 
+                "stroke-linejoin": "round",
                 "stroke-linecap":"round",
                 "fill": "#efebe5",
                 opacity: 1
@@ -64,13 +64,13 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
             linkData : null,
             dom : null,
             title : ""
-            
+
         }, options);
-        
+
         this.attrOver = options.attrOver;
         if (typeof options.attrOver != 'undefined') {
             this.over = true;
-        } 
+        }
         this.attr = options.attr;
         this.attrZoom = options.attrZoom;
         this.path = options.path;
@@ -84,48 +84,47 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
         this.dom = options.dom;
         this.title = options.title;
     },
-    
+
     getBBox : function() {
-        if (this._bBox == null) {
-            
+        if (this._bBox === null) {
+
             this._bBox = this.rPath.getBBox();
-            
+
         }
-        
+
         return this._bBox;
     },
-    
+
     setMap : function(map) {
-        
+
         this._super(map);
-        
+
         this._paper = map.getPaper();
-        
         this.rPath = this._paper.path(this.path)
-            .transform("t-"+(this._map.mapX-this._map.offsetX)+",-"+(this._map.mapY-this._map.offsetY))
+            //.transform("t-"+(this._map.mapX-this._map.offsetX)+",-"+(this._map.mapY-this._map.offsetY))
             .click($.proxy(this, "_onClick"));
         this.setAttr(this.attr);
 
         if (this.over) {
 
             this.rPath.mouseover($.proxy(this, "_onMouseOver"))
-            .mouseout($.proxy(this, '_onMouseOut'))
+            .mouseout($.proxy(this, '_onMouseOut'));
         } else {
             console.log('no');
         }
-          
-            
+
+
         if (this.clic) {
             this.getBBox();
-        };
-        
+        }
+
         $(this._map).on(this._map.ZOOM_START, $.proxy(this, "_onZoomStart"));
         $(this._map).on(this._map.ZOOM_STOP, $.proxy(this, "_onZoomStop"));
-        
-    }, 
-    
+
+    },
+
     setAttr : function(attr) {
-        this.rPath.attr(attr);  
+        this.rPath.attr(attr);
         if (typeof attr.glow != 'undefined') {
             this.rPath.glow(attr.glow);
         }
@@ -139,42 +138,42 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
             this.rPath.attr(attr);
         }
     },
-    
+
     zoom : function() {
-        
+
         this.setAttrDependingOnHightlight(this.attrZoom);
-        
-        if (this.clicWidth == 0) {
-            var bounds = this.getBBox();
+        var bounds = null;
+        if (this.clicWidth === 0) {
+            bounds = this.getBBox();
         } else {
-            var bounds = {
+            bounds = {
                 x : this.clicOffsetX,
                 y : this.clicOffsetY,
                 x2 : (this.clicOffsetX + this.clicWidth),
                 y2 : (this.clicOffsetY + this.clicHeight),
                 width : this.clicWidth,
                 height : this.clicHeight
-            }
+            };
         }
 
         this._map.setViewBox({x:bounds.x, y:bounds.y, width:bounds.width, height:bounds.height}, 300, $.proxy(this, '_onZoomed'));
         $(this).trigger(this.ZOOM);
     },
-    
+
     _onZoomStart : function() {
         this.setAttrDependingOnHightlight(this.attrZoom);
     },
-    
+
     _onZoomStop : function() {
         //this.setAttrDependingOnHightlight(this.attr);
     },
-    
+
     chargeLink : function() {
         if (this.link) {
             $.get(this.link, $.proxy(this, "_onCharged"));
-        };
+        }
     },
-    
+
     _onCharged : function(data) {
         this.linkData = JSON.parse(data);
         $(this).trigger(this.CHARGED);
@@ -182,7 +181,7 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
             $(this).trigger(this.CHARGED_AND_ZOOMED);
         }
     },
-    
+
     _onZoomed : function(event) {
         $(this).trigger(this.ZOOMED);
         this.hasZoomed = true;
@@ -191,10 +190,10 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
         }
         if (this.linkData) {
             $(this).trigger(this.CHARGED_AND_ZOOMED);
-            
+
         }
     },
-    
+
     _onMouseOver : function(event) {
         //this.rPath.animate(this.attrOver, 100);
         if (this.over) {
@@ -203,18 +202,18 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
             this._super(event);
         }
     },
-    
+
     highlight : function(bool) {
-        
+
         if (bool) {
             this._onMouseOver();
         } else {
             this._onMouseOut();
         }
-        
+
         this._super(bool);
     },
-    
+
     _onMouseOut : function(event) {
         if (!this._highlight) {
             //this.rPath.animate(this.attr, 100);
