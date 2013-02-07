@@ -1,5 +1,45 @@
 
 
+
+CREATE OR REPLACE FUNCTION getgeom(geometry, double precision, text, float, float)
+  RETURNS geometry AS
+$BODY$
+ SELECT
+st_translate(
+st_scale(
+st_translate(
+St_Intersection(
+ST_Transform(ST_SetSRID(ST_GeomFromText($3), 4326), 3857)
+, $1 )
+, 20037508.34, -20037508.34)
+, $2,$2)
+, $4, $5)
+ $BODY$
+  LANGUAGE sql IMMUTABLE
+  COST 100;
+
+-- Function: getsvg2(geometry, double precision, text, double precision)
+
+-- DROP FUNCTION getsvg2(geometry, double precision, text, double precision);
+
+CREATE OR REPLACE FUNCTION getsvg2(geometry, double precision, text, double precision, float, float)
+  RETURNS text AS
+$BODY$
+
+SELECT st_assvg(
+
+st_simplify(
+getGeom($1, $2, $3, $5, $6)
+,$4)
+, 0,0)
+
+
+ $BODY$
+  LANGUAGE sql IMMUTABLE
+  COST 100;
+
+-- Function: getgeom(geometry, double precision, text)
+
 CREATE OR REPLACE FUNCTION name2uri(text)
 RETURNS text
 IMMUTABLE

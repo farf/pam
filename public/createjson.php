@@ -50,7 +50,7 @@ class MapJsonCreator {
 		if(is_array($elements)) {
 			$ret = array();
 			foreach ($elements as $element) {
-				$ret[] = array("id"=>$element->id, "title"=>$element->name, "path"=>$element->svg);
+				$ret[] = array("id"=>$element->id, "title"=>$element->name, "path"=>$element->svg, "attrOver"=>"hop");
 			}
 			return json_encode($ret);
 		} else {

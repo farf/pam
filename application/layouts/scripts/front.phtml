@@ -9,91 +9,18 @@
 	<script src="/js/prettify.js"></script>
 	<script src="/js/bootstrap.min.js"></script>
     <script src="/pam_debug.js"></script>
-    <script src="/map_france_1_1_400x400.js"></script>
+    <script src="/map_france_1_3_400x400.js"></script>
     <?php echo $this->headScript();?>	
     <script>
         $(function() {
             prettyPrint();
         });
     </script>
+    <link href="/mapnager/js/mapnager.css" rel="stylesheet">
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/prettify.css" rel="stylesheet">
     <link href="/css/front.css" rel="stylesheet">
     <?php echo $this->headLink();?>	
-<!-- TODO : A DEGAGER -->
-    <script id="data" type="application/json">
-{
-"width":400,
-"height":400,
-"decorators":["Pam.Map.SmallMap","Pam.Map.Tooltip"],
-"map":{
-    "bounds":"-5.14375114440907,41.3337516784668,9.56041622161859,51.08939743042"
-},
-"tooltip": {
-    "class":"tooltip",
-    "show":"true"
-},
-"classes":{
-    "over":{
-        "stroke": "#EC5124",
-        "stroke-width": 1.5,
-        "stroke-opacity":0.6,
-        "stroke-linejoin": "round", 
-        "stroke-linecap":"round",
-        "fill": "#FFFFFF",
-        "opacity": 1
-    },
-    "attr":{
-        "stroke": "#94908c",
-        "stroke-width": 1.5,
-        "stroke-linejoin": "round", 
-        "stroke-linecap":"round",
-        "fill": "#efebe5",
-        "opacity": 1
-    },
-    "attrZoom": {
-        "stroke": "#94908c",
-        "stroke-width": 1.5,
-        "stroke-linejoin": "round", 
-        "stroke-linecap":"round",
-        "fill": "#efebe5",
-        "opacity": 1
-    },
-    "countries":{
-        "stroke": "#94908c",
-        "stroke-width": 1.5,
-        "stroke-linejoin": "round", 
-        "stroke-linecap":"round",
-        "fill": "#efebe5",
-        "opacity": 1
-    },
-    "countryover":{
-        "stroke": "#FFFFFF",
-        "stroke-width": 3,
-        "stroke-opacity":0.6,
-        "stroke-linejoin": "round", 
-        "stroke-linecap":"round",
-        "fill": "#EC5124",
-        "opacity": 1
-    },
-    "countryglow":{
-        "stroke": "#000000",
-        "stroke-width": 3,
-        "stroke-opacity":0.6,
-        "stroke-linejoin": "round", 
-        "stroke-linecap":"round",
-        "opacity": 1,
-        "glow":{"show":true}
-    }
-},
-"assets":["france_1"],
-"elements":[
-
-
-
-]}
-</script>
-
   </head>
 
   <body>

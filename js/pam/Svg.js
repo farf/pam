@@ -39,20 +39,22 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
 
         options = $.extend({
             attr: {
-                stroke: "#94908c",
+                "stroke": "#94908c",
                 "stroke-width": 1.5,
                 "stroke-linejoin": "round",
                 "stroke-linecap":"round",
                 "fill": "#efebe5",
-                opacity: 1
+                "opacity": 1,
+                "stroke-opacity":1
             },
             attrZoom: {
-                stroke: "#94908c",
+                "stroke": "#94908c",
                 "stroke-width": 1.5,
                 "stroke-linejoin": "round",
                 "stroke-linecap":"round",
                 "fill": "#efebe5",
-                opacity: 1
+                "opacity": 1,
+                "stroke-opacity":1
             },
             path: "",
             clic:false,
@@ -109,10 +111,7 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
 
             this.rPath.mouseover($.proxy(this, "_onMouseOver"))
             .mouseout($.proxy(this, '_onMouseOut'));
-        } else {
-            console.log('no');
         }
-
 
         if (this.clic) {
             this.getBBox();

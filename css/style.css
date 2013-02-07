@@ -138,7 +138,7 @@
     width:100px; height:100px;
     border: 1px solid #94938f;
 }
-.tooltip {
+.map .tooltip {
     background-color: black;
     padding: 6px 12px;
     position:absolute;
@@ -151,7 +151,7 @@
     opacity: 0.84;
 }
 
-.tooltip::after {
+.map .tooltip::after {
     content:"";
     position: absolute;
     bottom: -10px;

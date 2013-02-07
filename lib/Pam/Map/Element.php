@@ -9,6 +9,7 @@ class Pam_Map_Element {
 	public $bounds = "";
 	public $computername = "";
 	public $svg = "";
+	public $over = "over";
 
 	public function __construct($id, $zoom, $name, $computername, $bounds = "", $svg = "") {
 		$this->id = $id;
@@ -21,7 +22,12 @@ class Pam_Map_Element {
 	}
 
 	public function toArray() {
-		return array("id" => $this->id, "title" => $this->name, "path" => $this->svg);
+		return array(
+			"id" => $this->id,
+			"title" => $this->name,
+			"path" => $this->svg,
+			"attrOver" => $this->over
+		);
 	}
 
 }

@@ -46,7 +46,11 @@ Pam.Map.DomMap = Class.extend({
     },
 
     _initDom : function() {
-        var newDom = $("<div style='display:none' class='map'><img class='mapbackground' src='"+this._backgroundImage+"'/><div style='width:"+this.dom.width()+"; height:"+this.dom.height()+";' class='mapinner pointer'></div></div>");
+        var backgroundDiv = "";
+        if (this.background !== null) {
+            backgroundDiv = "<img class='mapbackground' src='"+this._backgroundImage+"'/>";
+        }
+        var newDom = $("<div style='display:none' class='map'>"+backgroundDiv+"<div style='width:"+this.dom.width()+"; height:"+this.dom.height()+";' class='mapinner pointer'></div></div>");
         this.dom.prepend(newDom);
         //newDom.fadeIn(500);
         newDom.show();
