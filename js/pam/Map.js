@@ -1,8 +1,6 @@
 
-
 if(typeof(Pam) == 'undefined') {Pam = {};}
 if(typeof(Pam.Map) == 'undefined') {Pam.Map = {};}
-
 
 Pam.Map.Map = Class.extend({
     /**

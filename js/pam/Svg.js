@@ -8,6 +8,7 @@ if(typeof(Pam.Map) == 'undefined') {
 
 Pam.Map.Svg = Pam.Map.MapElement.extend({
 
+>>>>>>> 91d11c461ac167b97e12c91e80eb2462d7faff5d
     CHARGED_AND_ZOOMED : "event_svg_charged_zoomed",
     ZOOMED : "event_svg_zoomed",
     CHARGED : "event_svg_charged",
@@ -73,6 +74,7 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
         if (typeof options.attrOver != 'undefined') {
             this.over = true;
         }
+
         this.attr = options.attr;
         this.attrZoom = options.attrZoom;
         this.path = options.path;
@@ -124,6 +126,7 @@ Pam.Map.Svg = Pam.Map.MapElement.extend({
 
     setAttr : function(attr) {
         this.rPath.attr(attr);
+
         if (typeof attr.glow != 'undefined') {
             this.rPath.glow(attr.glow);
         }
