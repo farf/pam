@@ -5,11 +5,7 @@ require_once 'Map/Point.php';
 
 
 /**
-<<<<<<< HEAD
  * This class manage a Pam Map which is an image in the background on which we trace stroke and point.
-=======
- * This class manage a Pam Map which is an image in the background on which we trace stroke and point. 
->>>>>>> 91d11c461ac167b97e12c91e80eb2462d7faff5d
  * This class manage the conversion between pixels and latitude and longitude.
  */
 class Pam_Map {
