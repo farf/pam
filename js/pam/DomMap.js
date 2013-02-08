@@ -56,7 +56,6 @@ Pam.Map.DomMap = Class.extend({
         newDom.show();
     },
 
-    _initMap : function() {
         var domMap = this.dom.find('.mapinner');
         var options = $.extend({dom:domMap, width : this._data.width, height : this._data.height }, this._data.map);
         this._map = new Pam.Map.Map(options);
@@ -318,7 +317,6 @@ Pam.Map.DomMap = Class.extend({
                     title: this.getTitle($(item)),
                     dom: $(item)
                 });
-
             }
 
             this.addMapElement(path);
@@ -363,6 +361,5 @@ Pam.Map.DomMap = Class.extend({
             return tooltip;
         }
     }
-
 
 });

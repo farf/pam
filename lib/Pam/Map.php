@@ -5,7 +5,11 @@ require_once 'Map/Point.php';
 
 
 /**
+<<<<<<< HEAD
  * This class manage a Pam Map which is an image in the background on which we trace stroke and point.
+=======
+ * This class manage a Pam Map which is an image in the background on which we trace stroke and point. 
+>>>>>>> 91d11c461ac167b97e12c91e80eb2462d7faff5d
  * This class manage the conversion between pixels and latitude and longitude.
  */
 class Pam_Map {
@@ -306,7 +310,6 @@ class Pam_Map {
         $ratio = str_replace(',', '.',sprintf('%.16f', $this->ratio/self::OFFSETMETER*self::OFFSET));
         /*
         return "
-
 SELECT getsvg3(geom, 0.0000649554785964, 1, 100, '".
                 $latLng1->lat." ".$latLng0->lng.",".$latLng0->lat." ".$latLng0->lng.",".$latLng0->lat." ".$latLng1->lng.",".$latLng1->lat." ".$latLng1->lng.",".$latLng1->lat." ".$latLng0->lng.
                 "') FROM ".$sql;
@@ -370,9 +373,6 @@ SELECT getsvg3(geom, 0.0000649554785964, 1, 100, '".
         $y0 = $point0->y - $offsetY;
         $x1 = $point1->x + $offsetX;
         $y1 = $point1->y + $offsetY;
-
-
-
 
         return array($x0, $y0, $x1 - $x0, $y1 - $y0);
     }
