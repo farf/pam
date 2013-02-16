@@ -1,6 +1,6 @@
 <?php
 include_once dirname(__FILE__) ."/../Db/DAO.php";
-include_once dirname(__FILE__) ."/../Map/element.php";
+include_once dirname(__FILE__) ."/../Map/Element.php";
 
 class Pam_Map_ElementDAO extends Pam_Db_DAO {
 
