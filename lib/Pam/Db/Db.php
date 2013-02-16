@@ -9,14 +9,21 @@ class Pam_Db_Db {
 
 	public $conn;
 
-	public function __construct($dbName, $user, $pass) {
+	public function __construct($dbName = null, $user = null, $pass = null) {
 		$this->dbName = $dbName;
 		$this->user = $user;
 		$this->pass = $pass;
 	}
 
 	public function init() {
-		$this->conn = pg_connect("host={$this->host} port={$this->port} dbname={$this->dbName} user={$this->user} password={$this->pass}");
+
+		if (isset($_ENV["DATABASE_URL"])) {
+			extract(parse_url($_ENV["DATABASE_URL"]));
+  			$this->conn = pg_connect("user=$user password=$pass host=$host dbname=" . substr($path, 1));
+		} else {
+			$this->conn = pg_connect("host={$this->host} port={$this->port} dbname={$this->dbName} user={$this->user} password={$this->pass}");
+		}
+
 	}
 
 	public function query($sql, $params = NULL) {
