@@ -16,7 +16,7 @@ $_exploded = explode('/', $_SERVER['REQUEST_URI']);
 
 // Check format: with or without version
 if (count($_exploded) != 2) {
-    die("I can't treat this file (/)" . count($_exploded));
+    die($_SERVER['REQUEST_URI']."I can't treat this file (/)" . count($_exploded));
 }
 
 $file = $_exploded[1];

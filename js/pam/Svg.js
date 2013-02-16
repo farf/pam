@@ -8,7 +8,6 @@ if(typeof(Pam.Map) == 'undefined') {
 
 Pam.Map.Svg = Pam.Map.MapElement.extend({
 
->>>>>>> 91d11c461ac167b97e12c91e80eb2462d7faff5d
     CHARGED_AND_ZOOMED : "event_svg_charged_zoomed",
     ZOOMED : "event_svg_zoomed",
     CHARGED : "event_svg_charged",

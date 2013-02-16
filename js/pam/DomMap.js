@@ -56,6 +56,7 @@ Pam.Map.DomMap = Class.extend({
         newDom.show();
     },
 
+    _initMap : function() {
         var domMap = this.dom.find('.mapinner');
         var options = $.extend({dom:domMap, width : this._data.width, height : this._data.height }, this._data.map);
         this._map = new Pam.Map.Map(options);
