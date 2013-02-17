@@ -1,6 +1,6 @@
 
 /******************************************************
- * file: /app/www/css/style.css 
+ * file: /app/www/css/style.css
  ******************************************************/
 
 * {
@@ -11,7 +11,7 @@
     display : none;
 }
 
-.map {    
+.map {
     overflow: hidden;
     position: absolute;
 }
@@ -40,10 +40,10 @@
 }
 
 .marker {
-    position:absolute; 
-    width:52px; 
-    height:32px; 
-    margin-top:-20px; 
+    position:absolute;
+    width:52px;
+    height:32px;
+    margin-top:-20px;
     margin-left:-26px;
     background-image: url('<?= BASE_URL ?>/imageCss/map/Icons_guide_48.png');
     background-repeat: no-repeat;
@@ -142,7 +142,7 @@
     width:100px; height:100px;
     border: 1px solid #94938f;
 }
-.map .tooltip {
+.map .tooltip.bottom {
     background-color: black;
     padding: 6px 12px;
     position:absolute;
@@ -155,7 +155,31 @@
     opacity: 0.84;
 }
 
-.map .tooltip::after {
+.map .tooltip_caret.bottom {
+    border-width: 0px 10px 10px 10px;
+    border-top-color: transparent;
+    border-bottom-color: black;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    top: -10px;
+    bottom:auto;
+}
+
+.map .tooltip {
+    background-color: black;
+    padding: 6px 12px;
+    position:absolute;
+    top: 0px;
+    bottom:auto;
+    left: 0px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    z-index:35;
+    opacity: 0.84;
+}
+
+.map .tooltip_caret {
     content:"";
     position: absolute;
     bottom: -10px;
@@ -173,4 +197,11 @@
 
 .pointer {
     cursor: pointer;
+}
+
+.showDomElement {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
 }

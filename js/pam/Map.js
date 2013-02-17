@@ -31,6 +31,7 @@ Pam.Map.Map = Class.extend({
 
     // The dom containing the map
     dom : null,
+    contentDom : null,
 
     // mouse position
     mouseX : 0,
@@ -103,11 +104,13 @@ Pam.Map.Map = Class.extend({
         options = $.extend({
                     bounds : null,
                     dom : null,
+                    contentDom : null,
                     width : 312,
                     height : 200
         }, options);
         this.bounds = options.bounds;
         this.dom = options.dom;
+        this.contentDom = options.contentDom;
 
         this.width = options.width;
         this.height = options.height;

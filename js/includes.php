@@ -21,9 +21,11 @@ $includes = array(
     __DIR__ . '/pam/animateViewBox.js',
     __DIR__ . '/pam/Svg.js',
     __DIR__ . '/pam/Itinerary.js',
+    __DIR__ . '/pam/Decorator.js',
     __DIR__ . '/pam/Legend.js',
     __DIR__ . '/pam/SmallMap.js',
     __DIR__ . '/pam/Tooltip.js',
+    __DIR__ . '/pam/ShowDomElement.js',
 
     // assets
     __DIR__ . '/pam/assets/france_2.js'   

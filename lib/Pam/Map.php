@@ -397,7 +397,7 @@ SELECT getsvg3(geom, 0.0000649554785964, 1, 100, '".
         return array(
             "width" => $this->width,
             "height" => $this->height,
-            "decorators" => array("Pam.Map.Tooltip"),
+            "decorators" => array("Pam.Map.Tooltip", "Pam.Map.ShowDomElement"),
             "map" => array("bounds" => $this->bounds),
             "tooltip" => array("class" => "tooltip", "show" => "true"),
             "classes" => array(
