@@ -204,4 +204,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    background-color: white;
+    border-color: gray;
+    padding: 10px;
 }
